@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <div class="mt-4 d-flex justify-content-evenly">
+        <a href="{% url 'books' %}" class="btn btn-primary"><i class="fas fa-angle-left"></i> Qaytish</a>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editBookModal"><i class="fas fa-edit"></i> Tahrirlash</button>
+        <form action="{% url 'delete_book' book.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"><i class="fas fa-skull-crossbones"></i> O'chirish</button>
+        </form>
+    </div>
+    <hr>
+    <h2 class="text-center">{{ book.title }}</h2>
+    <p><strong>Muallif:</strong> {{ book.author }}</p>
+    <p><strong>Yil:</strong> {{ book.year }}</p>
+    <p><strong>Narxi:</strong> ${{ book.price }}</p>
+    <p><strong>Tavsif:</strong> {{ book.description }}</p>
+    {% if book.image %}
+        <img src="{{ book.image.url }}" class="img-fluid mt-3" alt="{{ book.title }}"
+        style=" height: 600px">
+    {% endif %}
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="editBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editBookModalLabel">Kitobni tahrirlash</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'book_detail' book.pk %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

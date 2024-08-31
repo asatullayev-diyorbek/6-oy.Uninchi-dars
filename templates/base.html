@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{ title }}</title>
+        <!-- Font Awesome -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+                rel="stylesheet"
+        />
+        <style>
+            .about-image{
+                width: 300px;
+                height: 280px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <header>
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+                <!-- Container wrapper -->
+                <div class="container">
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand me-2" href="{% url 'dashboard' %}">
+                        <img
+                                src="https://icons4web.com/wp-content/uploads/2019/11/Library-icon-design-8211-Library-button-design-288071.jpg"
+                                height="45"
+                                alt="MDB Logo"
+                                loading="lazy"
+                                style="margin-top: -1px;"
+                        />
+                    </a>
+        
+                    <!-- Toggle button -->
+                    <button
+                            data-mdb-collapse-init
+                            class="navbar-toggler"
+                            type="button"
+                            data-mdb-target="#navbarButtonsExample"
+                            aria-controls="navbarButtonsExample"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                    >
+                        <i class="fas fa-bars"></i>
+                    </button>
+        
+                    <!-- Collapsible wrapper -->
+                    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                        <!-- Left links -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'dashboard' %}">Bosh sahifa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if '/book/' in request.path %}active{% endif %}" href="{% url 'books' %}">Kitoblar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if '/about/' in request.path %}active{% endif %}" href="{% url 'about' %}">Biz haqimizda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if '/contact/' in request.path %}active{% endif %}" href="{% url 'contact' %}">Aloqa</a>
+                            </li>
+                        </ul>
+                        <!-- Left links -->
+        
+                        <div class="d-flex align-items-center">
+                            <button data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2">
+                                Login
+                            </button>
+                            <button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
+                                Sign up for free
+                            </button>
+                            <a
+                                    data-mdb-ripple-init
+                                    class="btn btn-dark px-3"
+                                    href="https://github.com/asatullayev-diyorbek/"
+                                    target="_blank"
+                                    role="button"
+                            ><i class="fab fa-github"></i
+                            ></a>
+                        </div>
+                    </div>
+                    <!-- Collapsible wrapper -->
+                </div>
+                <!-- Container wrapper -->
+            </nav>
+            <!-- Navbar -->
+            
+            {% if request.path == '/' %}
+                <!-- Background image -->
+                <div
+                        class="container p-5 text-center bg-image"
+                        style="
+                             background-image: url('https://img.freepik.com/premium-photo/global-power-books-celebrating-world-book-day-copyright-day_1000124-210259.jpg');
+                             height: 600px;
+                             border-radius: 10px 10px 20px 20px;
+                        "
+                >
+                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="text-white">
+                                <h1 class="mb-3">Books world!</h1>
+                                <h4 class="mb-3">Kitoblar dunyosiga xush kelibsiz!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Background image -->
+            {% endif %} 
+        </header>
+        
+        {% block content %}
+            
+        {% endblock %}
+        
+        {% include 'components/messages.html' %}
+        
+        <footer class="bg-body-tertiary text-center mt-5">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #3b5998;"
+                            href="#!"
+                            role="button"
+                    ><i class="fab fa-facebook-f"></i
+                    ></a>
+        
+                    <!-- Twitter -->
+                    <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #55acee;"
+                            href="#!"
+                            role="button"
+                    ><i class="fab fa-twitter"></i
+                    ></a>
+        
+                    <!-- Google -->
+                    <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #dd4b39;"
+                            href="#!"
+                            role="button"
+                    ><i class="fab fa-google"></i
+                    ></a>
+        
+                    <!-- Instagram -->
+                    <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #ac2bac;"
+                            href="#!"
+                            role="button"
+                    ><i class="fab fa-instagram"></i
+                    ></a>
+        
+                    <!-- Linkedin -->
+                    <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #0082ca;"
+                            href="#!"
+                            role="button"
+                    ><i class="fab fa-linkedin-in"></i
+                    ></a>
+                    <!-- Github -->
+                    <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #333333;"
+                            href="#!"
+                            role="button"
+                    ><i class="fab fa-github"></i
+                    ></a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+        
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+                © 2024 Copyright:
+                <a class="text-body" href="https://asatullayev.uz/">Asatullayev Diyorbek</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        
+        <!-- MDB -->
+        <script
+                type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+        ></script>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    </body>
+</html>
